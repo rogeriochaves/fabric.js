@@ -71,4 +71,4 @@ import './src/shapes/textbox.class'; // optional textbox
 import './src/controls'; // optional interaction
 import './src/brushes'; // optional freedrawing
 //  extends fabric.StaticCanvas, fabric.Canvas, fabric.Object, depends on fabric.PencilBrush and fabric.Rect
-// import './src/mixins/eraser_brush.mixin'; // optional erasing
+import './src/mixins/eraser_brush.mixin'; // optional erasing
