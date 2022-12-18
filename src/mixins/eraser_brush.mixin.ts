@@ -58,7 +58,7 @@ import { Point } from '../point.class';
       if (this.eraser) {
         //  update eraser size to match instance
         var size = this._getNonTransformedDimensions();
-        this.eraser.isType('eraser') &&
+        this.eraser.type == 'eraser' &&
           this.eraser.set({
             width: size.x,
             height: size.y,
@@ -78,7 +78,7 @@ import { Point } from '../point.class';
         ['erasable'].concat(propertiesToInclude)
       );
       if (this.eraser && !this.eraser.excludeFromExport) {
-        object.eraser = this.eraser.toObject(propertiesToInclude);
+        object.eraser = _toObject.call(this.eraser, propertiesToInclude);
       }
       return object;
     },
@@ -577,6 +577,11 @@ import { Point } from '../point.class';
         return true;
       },
 
+      _captureDrawingPath: function (pointer) {
+        const pointerPoint = new fabric.Point(pointer.x, pointer.y)
+        this._addPoint(pointerPoint)
+      },
+
       /**
        *
        * @param {Point} pointer
@@ -795,6 +800,11 @@ import { Point } from '../point.class';
             );
           }, this)
         );
+      },
+
+      _isEmptySVGPath: function (pathData) {
+        const pathString = fabric.util.joinPath(pathData)
+        return pathString === "M 0 0 Q 0 0 0 0 L 0 0"
       },
 
       /**
