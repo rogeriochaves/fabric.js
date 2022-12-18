@@ -28707,6 +28707,9 @@ fabric$1.SprayBrush = SprayBrush;
             var object = _toObject.call(this, ['erasable'].concat(propertiesToInclude));
             if (this.eraser && !this.eraser.excludeFromExport) {
                 object.eraser = _toObject.call(this.eraser, propertiesToInclude);
+                if (this.eraser._objects) {
+                    object.eraser.objects = this.eraser._objects.map(object => object.toObject(propertiesToInclude));
+                }
             }
             return object;
         },
