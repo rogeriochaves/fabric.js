@@ -28706,10 +28706,7 @@ fabric$1.SprayBrush = SprayBrush;
         toObject: function (propertiesToInclude) {
             var object = _toObject.call(this, ['erasable'].concat(propertiesToInclude));
             if (this.eraser && !this.eraser.excludeFromExport) {
-                object.eraser = _toObject.call(this.eraser, propertiesToInclude);
-                if (this.eraser._objects) {
-                    object.eraser.objects = this.eraser._objects.map(object => object.toObject(propertiesToInclude));
-                }
+                object.eraser = this.eraser.toObject(propertiesToInclude);
             }
             return object;
         },
@@ -29321,7 +29318,7 @@ fabric$1.SprayBrush = SprayBrush;
         },
         _isEmptySVGPath: function (pathData) {
             const pathString = fabric.util.joinPath(pathData);
-            return pathString === "M 0 0 Q 0 0 0 0 L 0 0";
+            return pathString === 'M 0 0 Q 0 0 0 0 L 0 0';
         },
         /**
          * On mouseup after drawing the path on contextTop canvas

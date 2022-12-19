@@ -78,10 +78,7 @@ import { Point } from '../point.class';
         ['erasable'].concat(propertiesToInclude)
       );
       if (this.eraser && !this.eraser.excludeFromExport) {
-        object.eraser = _toObject.call(this.eraser, propertiesToInclude);
-        if (this.eraser._objects) {
-          object.eraser.objects = this.eraser._objects.map(object => object.toObject(propertiesToInclude))
-        }
+        object.eraser = this.eraser.toObject(propertiesToInclude);
       }
       return object;
     },
@@ -581,8 +578,8 @@ import { Point } from '../point.class';
       },
 
       _captureDrawingPath: function (pointer) {
-        const pointerPoint = new fabric.Point(pointer.x, pointer.y)
-        this._addPoint(pointerPoint)
+        const pointerPoint = new fabric.Point(pointer.x, pointer.y);
+        this._addPoint(pointerPoint);
       },
 
       /**
@@ -806,8 +803,8 @@ import { Point } from '../point.class';
       },
 
       _isEmptySVGPath: function (pathData) {
-        const pathString = fabric.util.joinPath(pathData)
-        return pathString === "M 0 0 Q 0 0 0 0 L 0 0"
+        const pathString = fabric.util.joinPath(pathData);
+        return pathString === 'M 0 0 Q 0 0 0 0 L 0 0';
       },
 
       /**
